@@ -68,7 +68,7 @@ class Snake:
     def check_collision_with_other_snake(self, other_snake):
         head = self.body[0]
         # Check if head collides with the other snake's body
-        if head in other_snake.body[1:]:
+        if head in other_snake.body:
             return True
         return False
     
@@ -85,7 +85,7 @@ class AISnake(Snake):
         head_x, head_y = self.body[0]
         food_x, food_y = food_pos
 
-        # AI logic to move towards food, avoiding boundaries
+        # AI logic to move towards food, avoiding self-collision
         if food_x > head_x:
             self.direction = RIGHT
         elif food_x < head_x:
@@ -94,9 +94,28 @@ class AISnake(Snake):
             self.direction = DOWN
         elif food_y < head_y:
             self.direction = UP
+    
+    def check_ahead_for_self_collision(self):
+        head_x, head_y = self.body[0]
+        dir_x, dir_y = self.direction
+        new_head = (head_x + dir_x) % WIDTH, (head_y + dir_y) % HEIGHT
+        
+        # Check if the new position is colliding with the body
+        if new_head in self.body:
+            return True
+        return False
 
     def update(self, food_pos):
+        # Check if the AI will collide with itself, adjust direction if needed
+        original_direction = self.direction
+        
         self.move_towards_food(food_pos)
+        
+        # Check for self-collision ahead
+        if self.check_ahead_for_self_collision():
+            # If collision is ahead, reverse the direction
+            self.direction = (-self.direction[0], -self.direction[1])
+        
         self.move()
 
 # Food class
