@@ -1,7 +1,18 @@
 # Snake Game - Python (Pygame)
 
-This project is a simple 2-player snake game built with Python and Pygame. One player controls a snake using the keyboard, while the other snake is controlled by AI. The game ends when one snake collides with the other snake's body or with its own body.  
-This game is fully generated using ChatGPT-03-mini-High, for testing its coding compatibility.
+This project is a simple 2-player snake game built with Python and Pygame, created using ChatGPT-3.5-mini-High. One player controls a snake using the keyboard, while the other snake is controlled by AI. The game ends when one snake collides with the other snake's body or with its own body.
+
+## GPT Prompt
+This game was created based on the following prompt to ChatGPT-o3-mini-High:
+
+"Create a Snake game in Python using Pygame where:
+- The player controls a green snake with arrow keys, and the AI controls a blue snake
+- Both snakes wrap around the screen when hitting boundaries instead of losing
+- The AI snake intelligently moves towards food and avoids boundaries, while the player's snake moves based on input
+- Both snakes grow when they eat food
+- The game ends when a snake's head touches its own body or the other snake's body, with the other snake winning
+- Scores are displayed, and the game runs at a relaxed speed
+- AI is designed to avoid crashing into boundaries, and body collisions are correctly detected, with boundary wraparound intact"
 
 ### Features:
 - **Player-controlled snake** using arrow keys.
